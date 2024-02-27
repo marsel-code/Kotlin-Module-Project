@@ -9,14 +9,17 @@ class Screen(private val archiveList: MutableList<Archive>) {
     }
 
     private fun inputStr(): String {
-        return Scanner(System.`in`).nextLine().toString()
+        while (true) {
+            val string = Scanner(System.`in`).nextLine().toString()
+            if (string.isNotBlank()) return string else println("Поле не может быть пустым \nВведите текст:")
+        }
     }
 
     fun selectArchive() {
         val menuArchive = mutableListOf(
             Menu("Создать архив")
             {
-                println("Ведите название архива")
+                println("Ведите название архива:")
                 val newArchive = Archive(inputStr())
                 archiveList.add(newArchive)
                 println("Архив '${newArchive.nameElement}' создан")
@@ -39,7 +42,7 @@ class Screen(private val archiveList: MutableList<Archive>) {
                     selectArchive()
                 }
             } catch (e: Exception) {
-                println("Введите цифру")
+                println("Введите цифру:")
                 selectArchive()
             }
         }
@@ -49,9 +52,9 @@ class Screen(private val archiveList: MutableList<Archive>) {
         val menuNote = mutableListOf(
             Menu("Создать заметку")
             {
-                println("Введите название заметки")
+                println("Введите название заметки:")
                 val note = Note(inputStr())
-                println("Введите содержание заметки")
+                println("Введите содержание заметки:")
                 note.addElement(inputStr())
                 archive.add(note)
                 println("Заметка '${note.nameElement}' создана")
