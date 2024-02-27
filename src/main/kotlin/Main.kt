@@ -1,3 +1,8 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+
+fun main() {
+    println("Добро пожаловать в приложение заметки")
+    val archives = Archives()
+    Screen(archives.contentElement).selectArchive()
 }
+
+
